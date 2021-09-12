@@ -1,6 +1,10 @@
 # docker-compose.yml
 
 version: "3.7"
+networks:
+  app-tier:
+    driver: bridge
+
 services:
   postgres:
     image: postgres
@@ -11,6 +15,15 @@ services:
       - '5432:5432'
     volumes:
       - library-db:/var/lib/postgresql/data
+    networks:
+      - app-tier      
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports: 
+      - 9411:9411
+    networks:
+      - app-tier      
 
   library:
     build:
@@ -22,8 +35,11 @@ services:
       DB_HOST: postgres
     depends_on:
       - postgres
+      - zipkin
     ports:
       - '3000:3000'
-        
+    networks:
+      - app-tier      
+
 volumes:
   library-db:

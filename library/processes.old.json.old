@@ -3,6 +3,7 @@
         {
             "name": "library-api",
             "script": "./bin/www",
+            "node_args": "--require './tracing.js'",
             "merge_logs": true,
             "max_restarts": 20,
             "instances": 4,

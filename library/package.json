@@ -3,19 +3,27 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "pm2": "pm2 start processes.json --no-daemon",
-    "start": "node ./bin/www",
+    "startapp": "node --require './tracing.js' ./bin/www",
     "test": "jest",
     "migrate": "node ./bin/migrate.js",
     "dbclean": "node ./bin/clean.js"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.0.3",
+    "@opentelemetry/exporter-zipkin": "^0.24.0",
+    "@opentelemetry/instrumentation": "^0.24.0",
+    "@opentelemetry/instrumentation-grpc": "^0.24.0",
+    "@opentelemetry/instrumentation-http": "^0.24.0",
+    "@opentelemetry/resources": "^0.24.0",
+    "@opentelemetry/sdk-node": "^0.24.0",
+    "@opentelemetry/sdk-trace-node": "^0.24.1-alpha.4",
+    "@opentelemetry/semantic-conventions": "^0.24.0",
+    "@opentelemetry/tracing": "^0.24.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "morgan": "~1.9.1",
     "pg": "^8.7.1",
-    "pm2": "^5.1.1",
     "sequelize": "^6.6.5"
   },
   "devDependencies": {
