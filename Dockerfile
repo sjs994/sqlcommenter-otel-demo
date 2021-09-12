@@ -7,4 +7,4 @@ RUN npm install
 RUN chown -R app /opt/app
 USER app
 EXPOSE 3000
-CMD [ "npm", "run", "startapp" ]
+CMD [ "npm", "run", "pm2" ]
