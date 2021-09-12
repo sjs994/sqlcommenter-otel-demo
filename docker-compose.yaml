@@ -40,7 +40,7 @@ services:
     ports:
       - '3000:3000'
     networks:
-      - app-tier      
+      - app-tier
 
 volumes:
   library-db:

@@ -24,10 +24,11 @@ diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ALL);
 /*
 provider.addSpanProcessor(
     new SimpleSpanProcessor(new ZipkinExporter({
-        url: "http://localhost:9411"
+        url: "http://zipkin:9411"
     }))
 );
 */
+
 
 provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
 
