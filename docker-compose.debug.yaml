@@ -34,11 +34,13 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: postgres
+    command: "node --inspect-brk=0.0.0.0 --require './tracing.js' ./bin/www"
     depends_on:
       - postgres
       - zipkin
     ports:
       - '3000:3000'
+      - '9229:9229'  #open for debug.
     networks:
       - app-tier      
 

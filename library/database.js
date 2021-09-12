@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const { wrapSequelizeAsMiddleware } = require("@google-cloud/sqlcommenter-sequelize");
 
 const sequelize = new Sequelize(
     process.env.DB_SCHEMA || "postgres",
@@ -11,7 +12,22 @@ const sequelize = new Sequelize(
         dialectOptions: {
             sl: process.env.DB_SSL == "true"
         }
-    });
+    }
+);
+
+const sqlcommenterMiddleware = wrapSequelizeAsMiddleware(sequelize, 
+    {
+        traceparent: true,
+        tracestate: true,
+      
+        // These are optional and will cause a high cardinality burst traced queries
+        client_timezone: false,
+        db_driver: true,
+        route: true,
+    },
+    { TraceProvider: "OpenTelemetry" }
+);
+      
 
 const Book = sequelize.define("Book", {
     name: {
@@ -25,7 +41,8 @@ const Book = sequelize.define("Book", {
 });
 
 module.exports = {
-    sequelize: sequelize,
-    Book: Book
+    sequelize,
+    Book,
+    sqlcommenterMiddleware
 }
 
