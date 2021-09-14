@@ -37,6 +37,11 @@ const Book = sequelize.define("Book", {
     authorName: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    count: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
     }
 });
 

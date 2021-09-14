@@ -12,26 +12,22 @@ const { SimpleSpanProcessor, ConsoleSpanExporter } = require("@opentelemetry/tra
 
 const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
 const { GrpcInstrumentation } = require("@opentelemetry/instrumentation-grpc");
+const { constants } = require("./constants");
 
 const provider = new NodeTracerProvider({
     resource: new Resource({
         [SemanticResourceAttributes.SERVICE_NAME]: "library-app",
     })
 });
-
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ALL);
 
-/*
 provider.addSpanProcessor(
     new SimpleSpanProcessor(new ZipkinExporter({
-        url: "http://zipkin:9411"
+        url: `http://${constants.ZIPKIN_HOSTNAME}:${constants.ZIPKIN_PORT}/api/v2/spans`,
+        serviceName: "BookService"
     }))
 );
-*/
-
-
 provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
-
 provider.register();
 
 registerInstrumentations({

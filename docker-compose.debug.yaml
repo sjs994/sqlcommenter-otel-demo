@@ -25,6 +25,19 @@ services:
       - 9411:9411
     networks:
       - app-tier      
+    
+  checkout:
+    build:
+      context: checkout
+    depends_on: 
+      - library
+      - zipkin
+    command: "node --inspect-brk=0.0.0.0 checkout.js"
+    ports: 
+     - '3001:3001'
+     - '9229:9229'
+    networks:
+      - app-tier 
 
   library:
     build:
@@ -34,13 +47,13 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: postgres
-    command: "node --inspect-brk=0.0.0.0 --require './tracing.js' ./bin/www"
+    # command: "node --inspect-brk=0.0.0.0 --require './tracing.js' ./bin/www"
     depends_on:
       - postgres
       - zipkin
     ports:
       - '3000:3000'
-      - '9229:9229'  #open for debug.
+      # - '9230:9229'  #open for debug.
     networks:
       - app-tier      
 

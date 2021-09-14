@@ -10,10 +10,17 @@ afterAll(async () => {
 
 test("create book", async () => {
     expect.assertions(1);
-    const book = await db.Book.create({
+    const book1 = await db.Book.create({
         id: 1,
         name: "testbook1",
-        authorName: "testAuthor1"
+        authorName: "testAuthor1",
+        count: 100
     });
-    expect(book.id).toEqual(1);
+    const book2 = await db.Book.create({
+        id: 2,
+        name: "testbook2",
+        authorName: "testAuthor2",
+        count: 200
+    });
+    expect(book1.id).toEqual(1);
 });
