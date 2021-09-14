@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Docker: Attach to Library Service",
+            "name": "Docker: Attach to Book Service",
             "type": "node",
             "request": "attach",
             "port": 9229,
             "address": "localhost",
-            "localRoot": "${workspaceFolder}/library",
+            "localRoot": "${workspaceFolder}/bookservice",
             "remoteRoot": "/",
             "protocol": "inspector"
         },
