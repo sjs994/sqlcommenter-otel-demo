@@ -30,14 +30,14 @@ services:
    build:
       context: checkout
    depends_on: 
-      - library
+      - bookservice
       - zipkin
    ports: 
      - '3001:3001'
    networks:
       - app-tier 
 
-  library:
+  bookservice:
     build:
       context: .
     environment:

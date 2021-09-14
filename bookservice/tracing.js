@@ -16,7 +16,7 @@ const { constants } = require("./constants");
 
 const provider = new NodeTracerProvider({
     resource: new Resource({
-        [SemanticResourceAttributes.SERVICE_NAME]: "library-app",
+        [SemanticResourceAttributes.SERVICE_NAME]: "BookService",
     })
 });
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ALL);

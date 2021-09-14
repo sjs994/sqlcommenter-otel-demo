@@ -30,7 +30,7 @@ services:
     build:
       context: checkout
     depends_on: 
-      - library
+      - bookservice
       - zipkin
     command: "node --inspect-brk=0.0.0.0 checkout.js"
     ports: 
@@ -39,7 +39,7 @@ services:
     networks:
       - app-tier 
 
-  library:
+  bookservice:
     build:
       context: .
     environment:
