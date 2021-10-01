@@ -1,5 +1,5 @@
 const { NodeTracerProvider } = require("@opentelemetry/node");
-const { SimpleSpanProcessor } = require("@opentelemetry/tracing");
+const { SimpleSpanProcessor, ConsoleSpanExporter } = require("@opentelemetry/tracing");
 const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
 const { constants } = require("./constants"); 
 const fetch = require("node-fetch");
@@ -10,6 +10,7 @@ const zipkinExporter = new ZipkinExporter({
   serviceName: "CheckoutService"
 });
 const spanProcessor = new SimpleSpanProcessor(zipkinExporter);
+provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
 provider.addSpanProcessor(spanProcessor);
 provider.register()
 
