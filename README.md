@@ -11,3 +11,5 @@ To debug the code, use
 ```
 docker-compose -f docker-compose.debug.yaml up -d && docker-compose logs -f postgres
 ```
+
+Link to opentelemetry-sqlcommenter: <https://github.com/open-telemetry/opentelemetry-sqlcommenter>
