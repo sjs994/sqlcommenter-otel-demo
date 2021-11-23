@@ -12,12 +12,16 @@ const { SimpleSpanProcessor, ConsoleSpanExporter } = require("@opentelemetry/tra
 
 const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
 const { GrpcInstrumentation } = require("@opentelemetry/instrumentation-grpc");
+const { SequelizeInstrumentation } = require("opentelemetry-instrumentation-sequelize");
 const { constants } = require("./constants");
 
 const provider = new NodeTracerProvider({
     resource: new Resource({
         [SemanticResourceAttributes.SERVICE_NAME]: "BookService",
-    })
+    }),
+    plugins: {
+        sequelize: { enabled: false, path: 'opentelemetry-plugin-sequelize' }
+    }
 });
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ALL);
 
@@ -34,6 +38,7 @@ registerInstrumentations({
     instrumentations: [
       new HttpInstrumentation(),
       new GrpcInstrumentation(),
+      new SequelizeInstrumentation()
     ],
 });
 

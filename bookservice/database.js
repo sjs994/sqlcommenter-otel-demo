@@ -21,7 +21,7 @@ const sqlcommenterMiddleware = wrapSequelizeAsMiddleware(sequelize,
         tracestate: true,
       
         // These are optional and will cause a high cardinality burst traced queries
-        client_timezone: false,
+        client_timezone: true,
         db_driver: true,
         route: true,
     },
