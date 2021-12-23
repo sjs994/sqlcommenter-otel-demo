@@ -9,6 +9,7 @@ on:
 
 jobs:
   bookservice:
+    if: startsWith(github.event.release.tag_name, "bookservice")
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,6 +21,7 @@ jobs:
         run: npm build
       
   checkout:
+    if: startsWith(github.event.release.tag_name, "checkout")
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
