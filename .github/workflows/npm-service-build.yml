@@ -16,9 +16,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - working-directory: ./bookservice
-      - run: npm ci
-      - run: npm test
+      - name: Build Bookservice
+        working-directory: ./bookservice
+        run: npm build
       
   checkout:
     if: github.event.client_payload.job == 'checkout'
@@ -28,6 +28,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - working-directory: ./checkout
-      - run: npm ci
-      - run: npm test
+      - name: Build Checkout
+        working-directory: ./checkout
+        run: npm build
