@@ -18,7 +18,7 @@ jobs:
           node-version: 16
       - name: Build Bookservice
         working-directory: ./bookservice
-        run: npm build
+        run: npm install
       
   checkout:
     if: startsWith(github.event.release.tag_name, 'checkout')
@@ -30,4 +30,4 @@ jobs:
           node-version: 16
       - name: Build Checkout
         working-directory: ./checkout
-        run: npm build
+        run: npm install
