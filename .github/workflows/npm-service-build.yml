@@ -9,7 +9,6 @@ on:
 
 jobs:
   bookservice:
-    if: github.event.client_payload.job == 'bookservice'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +20,6 @@ jobs:
         run: npm build
       
   checkout:
-    if: github.event.client_payload.job == 'checkout'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
