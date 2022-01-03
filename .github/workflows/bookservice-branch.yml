@@ -1,0 +1,23 @@
+name: Bookservice CI
+on:
+  push:
+    paths:
+      - 'bookservice/**'
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Push to branch
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./bookservice
+        publish_branch: bookservice-service
+        force_orphan: true
