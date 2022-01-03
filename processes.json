@@ -1,0 +1,17 @@
+{
+    "apps": [
+        {
+            "name": "library-api",
+            "script": "./bin/www",
+            "node_args": "--require './tracing.js'",
+            "merge_logs": true,
+            "max_restarts": 20,
+            "instances": 4,
+            "max_memory_restart": "200M",
+            "env": {
+                "PORT": 3000,
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
